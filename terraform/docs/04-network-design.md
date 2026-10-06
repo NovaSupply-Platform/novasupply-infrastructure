@@ -2,7 +2,7 @@
 
 ## AWS Region
 
-us-east-1
+ap-south-1
 
 ---
 
@@ -14,11 +14,11 @@ us-east-1
 
 ## Availability Zones
 
-us-east-1a
+ap-south-1a
 
-us-east-1b
+ap-south-1b
 
-us-east-1c
+ap-south-1c
 
 ---
 
@@ -64,5 +64,16 @@ Private:
 
 Database:
 
-- RDS
+- RDS PostgreSQL
 - Redis
+
+---
+
+## Network Security Principles
+
+- No direct internet access to EKS worker nodes
+- Databases deployed in private database subnets
+- Ingress traffic routed through Application Load Balancer
+- Egress internet access controlled through NAT Gateway
+- Security Groups enforce least privilege access
+- VPC Flow Logs enabled for network monitoring and auditing
