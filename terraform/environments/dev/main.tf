@@ -73,3 +73,14 @@ module "eks" {
   eks_cluster_role_arn = module.iam.eks_cluster_role_arn
   eks_node_role_arn    = module.iam.eks_node_role_arn
 }
+
+module "rds" {
+  source = "../../modules/rds"
+
+  project_name = "novasupply"
+  environment  = "dev"
+
+  database_subnet_ids = module.vpc.database_subnet_ids
+
+  rds_security_group_id = module.security_groups.rds_security_group_id
+}
