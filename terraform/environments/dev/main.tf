@@ -54,3 +54,22 @@ module "security_groups" {
 
   vpc_id = module.vpc.vpc_id
 }
+
+module "iam" {
+  source = "../../modules/iam"
+
+  project_name = "novasupply"
+  environment  = "dev"
+}
+
+module "eks" {
+  source = "../../modules/eks"
+
+  project_name = "novasupply"
+  environment  = "dev"
+
+  private_subnet_ids = module.vpc.private_subnet_ids
+
+  eks_cluster_role_arn = module.iam.eks_cluster_role_arn
+  eks_node_role_arn    = module.iam.eks_node_role_arn
+}
