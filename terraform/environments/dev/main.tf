@@ -102,3 +102,22 @@ module "ecr" {
   project_name = "novasupply"
   environment  = "dev"
 }
+
+module "route53" {
+  source = "../../modules/route53"
+
+  domain_name = "novasupply.local"
+}
+
+module "alb" {
+  source = "../../modules/alb"
+
+  project_name = "novasupply"
+  environment  = "dev"
+
+  vpc_id = module.vpc.vpc_id
+
+  public_subnet_ids = module.vpc.public_subnet_ids
+
+  alb_security_group_id = module.security_groups.alb_security_group_id
+}
