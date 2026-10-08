@@ -84,3 +84,14 @@ module "rds" {
 
   rds_security_group_id = module.security_groups.rds_security_group_id
 }
+
+module "redis" {
+  source = "../../modules/redis"
+
+  project_name = "novasupply"
+  environment  = "dev"
+
+  database_subnet_ids = module.vpc.database_subnet_ids
+
+  redis_security_group_id = module.security_groups.redis_security_group_id
+}
