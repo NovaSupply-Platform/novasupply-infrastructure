@@ -121,3 +121,13 @@ module "alb" {
 
   alb_security_group_id = module.security_groups.alb_security_group_id
 }
+
+module "msk" {
+  source = "../../modules/msk"
+
+  project_name = "novasupply"
+  environment  = "dev"
+
+  vpc_id             = module.vpc.vpc_id
+  private_subnet_ids = module.vpc.private_subnet_ids
+}
