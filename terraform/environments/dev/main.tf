@@ -95,3 +95,10 @@ module "redis" {
 
   redis_security_group_id = module.security_groups.redis_security_group_id
 }
+
+module "ecr" {
+  source = "../../modules/ecr"
+
+  project_name = "novasupply"
+  environment  = "dev"
+}
